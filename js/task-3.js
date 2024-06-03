@@ -1,14 +1,41 @@
-"use strict"
+// Напиши клас StringBuilder, який приймає один параметр initialValue — довільний рядок, який записується у приватну властивість value об'єкта, що створюється.
 
-function getElementWidth (content, padding, border) {
-    return parseFloat(content) + parseFloat(padding)*2 + parseFloat(border)*2;
-    }
+// Оголоси наступні методи класу:
 
-//   content = parseFloat(content);
-//   padding = parseFloat(padding);
-//   border = parseFloat(border);
-//   return content + 2 * padding + 2 * border;
+// getValue() — повертає поточне значення приватної властивості value.
+// padEnd(str) — отримує параметр str (рядок) і додає його в кінець значення приватної властивості value об'єкта, який викликає цей метод.
+// padStart(str) — отримує параметр str (рядок) і додає його на початок значення приватної властивості value об'єкта, який викликає цей метод.
+// padBoth(str) — отримує параметр str (рядок) і додає його на початок і в кінець значення приватної властивості value об'єкта, який викликає цей метод.
+// Візьми код нижче з ініціалізацією екземпляра й викликами методів і встав його після оголошення класу для перевірки коректності роботи. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
 
-console.log(getElementWidth("50px", "8px", "4px")); // 74
-console.log(getElementWidth("60px", "12px", "8.5px")); // 101
-console.log(getElementWidth("200px", "0px", "0px")); // 200
+class StringBuilder {
+  #value;
+
+  constructor(initialValue) {
+    this.#value = initialValue;
+  }
+  getValue() {
+    return this.#value;
+  }
+
+  padEnd(str) {
+    this.#value = this.#value.concat(str);
+  }
+
+  padStart(str) {
+    this.#value = str.concat(this.#value);
+  }
+
+  padBoth(str) {
+    this.#value = str + this.#value + str;
+  }
+}
+
+const builder = new StringBuilder('.');
+console.log(builder.getValue()); // "."
+builder.padStart('^');
+console.log(builder.getValue()); // "^."
+builder.padEnd('^');
+console.log(builder.getValue()); // "^.^"
+builder.padBoth('=');
+console.log(builder.getValue()); // "=^.^="

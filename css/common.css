@@ -221,4 +221,6 @@ button {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 16px;
+  border-radius: 8px;
+  background: #f6f6fe;
 }

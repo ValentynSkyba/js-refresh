@@ -8,6 +8,6 @@ const elements = {
 elements.input.addEventListener('input', onUsernameInput);
 
 function onUsernameInput() {
-  const userValue = elements.input.value;
+  const userValue = elements.input.value.trim();
   elements.article.textContent = userValue;
 }

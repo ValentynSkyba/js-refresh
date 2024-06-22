@@ -33,6 +33,11 @@ refs.form.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
   e.preventDefault();
+  if (
+    refs.form.elements.email.value &&
+    refs.form.elements.message.value === null
+  )
+    alert('fill all fields');
   removeFromLocalStorage(LS_KEY);
   e.target.reset();
 }

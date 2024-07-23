@@ -10,7 +10,7 @@ const container = document.querySelector('.gallery');
 
 export function renderImages(arr) {
   const markup = renderMarkup(arr);
-  container.innerHTML = markup;
+  container.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }
 

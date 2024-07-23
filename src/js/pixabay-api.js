@@ -1,22 +1,22 @@
-export function getGallery(query) {
-  const BASE_URL = 'https://pixabay.com/';
-  const END_PPOINT = 'api/';
-  const API_KEY = '42801322-2062a11e10d8e6d4e2ccea576';
-  const params = new URLSearchParams({
-    key: API_KEY,
+import Axios from 'axios';
+
+const axios = Axios.create({
+  baseURL: 'https://pixabay.com/',
+  params: {
+    key: '42801322-2062a11e10d8e6d4e2ccea576',
+  },
+});
+
+export async function getGallery(query, userPage) {
+  const params = {
     q: query,
     image_type: 'photo',
     orientation: 'horizontal',
+    page: userPage,
     per_page: 5,
     safesearch: true,
-  });
+  };
 
-  const url = `${BASE_URL}${END_PPOINT}/?${params}`;
-
-  return fetch(url).then(res => {
-    if (!res.ok) {
-      throw new Error(res.status);
-    }
-    return res.json();
-  });
+  const res = await axios.get('api/', { params });
+  return res.data;
 }
